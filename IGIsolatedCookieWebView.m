@@ -79,7 +79,7 @@ didReceiveResponse:(NSURLResponse *)response
 
 - (void)dealloc
 {
-	[resourceLoadDelegate release];
+	[[self resourceLoadDelegate] release];
 	[super dealloc];
 }
 
