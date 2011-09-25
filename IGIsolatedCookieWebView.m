@@ -84,6 +84,12 @@ didReceiveResponse:(NSURLResponse *)response
 	[self setResourceLoadDelegate:resourceLoadDelegate];
 }
 
+- (void)dealloc
+{
+	[resourceLoadDelegate release];
+	[super dealloc];
+}
+
 - (NSArray *)cookies
 {
     return [(IGIsolatedCookieWebViewResourceLoadDelegate *)[self resourceLoadDelegate] cookies];
@@ -174,6 +180,11 @@ didReceiveResponse:(NSURLResponse *)response
 		cookieStore = [[NSMutableArray arrayWithCapacity:0] retain];
 	}
 	return self;
+}
+
+- (void)dealloc {
+    [cookieStore release];
+	[super dealloc];
 }
 
 - (void)pullCookiesFromResponse:(NSURLResponse *)response
