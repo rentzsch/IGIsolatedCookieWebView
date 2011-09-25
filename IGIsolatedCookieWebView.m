@@ -71,17 +71,10 @@ didReceiveResponse:(NSURLResponse *)response
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
-		[self awakeFromNib];
+        IGIsolatedCookieWebViewResourceLoadDelegate *resourceLoadDelegate = [[IGIsolatedCookieWebViewResourceLoadDelegate alloc] init];
+        [self setResourceLoadDelegate:resourceLoadDelegate];
     }
     return self;
-}
-
-- (void)awakeFromNib
-{
-//	NSLog(@"=== awakeFromNib ===");
-	IGIsolatedCookieWebViewResourceLoadDelegate *resourceLoadDelegate = [[IGIsolatedCookieWebViewResourceLoadDelegate alloc] init];
-	[self setResourceLoadDelegate:resourceLoadDelegate];
 }
 
 - (void)dealloc
