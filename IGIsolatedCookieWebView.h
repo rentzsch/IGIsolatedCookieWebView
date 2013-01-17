@@ -32,9 +32,10 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 
+@class IGIsolatedCookieWebViewResourceLoadDelegate;
 
 @interface IGIsolatedCookieWebView : WebView {
-
+    IGIsolatedCookieWebViewResourceLoadDelegate *isolatedCookieResourceLoadDelegate;
 }
 
 - (NSArray *)cookies;

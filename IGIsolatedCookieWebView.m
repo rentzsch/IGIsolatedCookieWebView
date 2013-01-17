@@ -80,13 +80,13 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)awakeFromNib
 {
 //	NSLog(@"=== awakeFromNib ===");
-	IGIsolatedCookieWebViewResourceLoadDelegate *resourceLoadDelegate = [[IGIsolatedCookieWebViewResourceLoadDelegate alloc] init];
-	[self setResourceLoadDelegate:resourceLoadDelegate];
+	isolatedCookieResourceLoadDelegate = [[IGIsolatedCookieWebViewResourceLoadDelegate alloc] init];
+	[self setResourceLoadDelegate:isolatedCookieResourceLoadDelegate];
 }
 
 - (void)dealloc
 {
-	[[self resourceLoadDelegate] release];
+	[isolatedCookieResourceLoadDelegate release];
 	[super dealloc];
 }
 
