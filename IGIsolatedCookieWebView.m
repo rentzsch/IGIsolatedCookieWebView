@@ -84,11 +84,13 @@ didReceiveResponse:(NSURLResponse *)response
 	[self setResourceLoadDelegate:isolatedCookieResourceLoadDelegate];
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
 	[isolatedCookieResourceLoadDelegate release];
 	[super dealloc];
 }
+#endif
 
 - (NSArray *)cookies
 {
@@ -182,10 +184,12 @@ didReceiveResponse:(NSURLResponse *)response
 	return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc {
     [cookieStore release];
 	[super dealloc];
 }
+#endif
 
 - (void)pullCookiesFromResponse:(NSURLResponse *)response
 {
@@ -242,7 +246,11 @@ didReceiveResponse:(NSURLResponse *)response
 
 - (NSArray *)cookies
 {
+#if __has_feature(objc_arc)
+    return [cookieStore copy];
+#else
 	return [[cookieStore copy] autorelease];
+#endif
 }
 
 - (void) removeAllCookies
